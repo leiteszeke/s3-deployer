@@ -13,7 +13,7 @@ jobs:
         env:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
 
-   deploy:
+  deploy:
     name: Deploy
     needs: build
     runs-on: ubuntu-latest
