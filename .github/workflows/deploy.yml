@@ -22,6 +22,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Move to Root
+        uses: jcblw/bash@master
+        with:
+          args: cd $GITHUB_WORKSPACE
+
       - name: Install Dependencies
         uses: nuxt/actions-yarn@master
         with:
