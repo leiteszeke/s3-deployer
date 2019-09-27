@@ -19,6 +19,7 @@ jobs:
   build:
     name: Build
     needs: deploy
+    runs-on: ubuntu-latest
 
     steps:
       - name: Build React App
@@ -29,6 +30,7 @@ jobs:
   publish:
     name: Publish
     needs: build
+    runs-on: ubuntu-latest
 
     steps:
       - name: Publish
