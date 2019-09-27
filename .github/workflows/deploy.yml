@@ -27,13 +27,6 @@ jobs:
         env:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           BUILD_SCRIPT: yarn install && yarn build
-
-  publish:
-    name: Publish
-    needs: build
-    runs-on: ubuntu-latest
-
-    steps:
       - name: Publish
         uses: actions/aws/cli@master
         env:
