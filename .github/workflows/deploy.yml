@@ -3,31 +3,17 @@ name: Publish to S3 Bucket
 on: push
 
 jobs:
-  deploy:
-    name: Setup
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout
-      uses: actions/checkout@master
-
-    - name: Set SSH Key
-      uses: webfactory/ssh-agent@v0.1.1
-      with:
-        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-
   build:
-    name: Build
-    needs: deploy
+    name: Build and Deploy
     runs-on: ubuntu-latest
 
     steps:
-      - name: Build and deplot
-        uses: leiteszeke/github-react-to-s3@master
+      - name: Build React App
+        uses: leiteszeke/github-react-build@master
         env:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           BUILD_SCRIPT: yarn install && yarn build
-      - name: Publish
+      - name: Publish to S3 Bucket
         uses: actions/aws/cli@master
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
