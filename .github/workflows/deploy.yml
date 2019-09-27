@@ -22,20 +22,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Move to Root
-        uses: jcblw/bash@master
-        with:
-          args: cd $GITHUB_WORKSPACE
-
-      - name: Install Dependencies
-        uses: nuxt/actions-yarn@master
-        with:
-          args: install
-
-      - name: Build React App
-        uses: nuxt/actions-yarn@master
-        with:
-          args: build
+      - name: Build and deplot
+        uses: leiteszeke/github-react-to-s3@master
+        env:
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          BUILD_SCRIPT: yarn install && yarn build
 
   publish:
     name: Publish
