@@ -9,14 +9,12 @@ jobs:
 
     steps:
       - name: Build React App
-        uses: leiteszeke/github-react-build@master
+        uses: leiteszeke/github-react-build@develop
         env:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           BUILD_SCRIPT: yarn install && yarn build
-      - name: Deploy to S3 Bucket
-        uses: actions/aws/cli@master
-        env:
+          AWS_REGION: us-west-2
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        with:
-          args: s3 sync build/ s3://s3-deployer --acl public-read
+          FOLDER: build/
+          BUCKET: s3-deployer
