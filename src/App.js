@@ -16,7 +16,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Testing the deployer
+          Probando el nuevo script
         </a>
       </header>
     </div>
